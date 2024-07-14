@@ -17,9 +17,11 @@ export async function POST(request) {
     const hasToken = cookieStore.get("user-token");
 
     //check token is not expired
-    if (hasToken && tokenValid.expire > Date.now()) {
-      // if token not expired return response as old token value
-      return Response.json({ token: hasToken.value });
+    if (hasToken) {
+      if (hasToken == tokenValid.token && tokenValid.expire > Date.now()) {
+        // if token not expired return response as old token value
+        return Response.json({ token: hasToken.value });
+      }
     }
 
     // if token not already exists generate new token
