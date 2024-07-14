@@ -18,6 +18,7 @@ export async function POST(request) {
 
     //check token is not expired
     if (hasToken) {
+      //check old saved token and cookie token is matcing token has valid expire time
       if (hasToken == tokenValid.token && tokenValid.expire > Date.now()) {
         // if token not expired return response as old token value
         return Response.json({ token: hasToken.value });
