@@ -1,6 +1,6 @@
 function filterData(data, id, name) {
 
-
+    console.log("hello");
     let filterData = data.filter((item) => {
         if (item[name] === id) {
             return item.id;

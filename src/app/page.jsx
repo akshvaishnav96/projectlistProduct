@@ -10,7 +10,7 @@ import Loading from "./components/home/Loading";
 import { Product } from "./components/home/Product";
 import { v4 as uuidv4 } from "uuid";
 import { FilterContext } from "./contaxt/context";
-import filterArr from "./utils/getFilterElectricityData";
+import { filterArr } from "./utils/getFilterElectricityData";
 import { filterData } from "./utils/filterButtonNav/providers";
 
 import MainDiv from "./components/home/header/MainDiv";
@@ -23,6 +23,7 @@ export default function Page() {
   const [distributors, setDistributors] = useState([]);
   const [elec_ids, setElecIds] = useState([]);
   const [electricityId, setElectricityId] = useState([]);
+  const [elc_main, setElec_main] = useState([]);
 
   useEffect(() => {
     async function getProducts() {
@@ -55,6 +56,7 @@ export default function Page() {
       setProviders(providers);
       setElectricityData(All_plans.electricity);
       setElectricityId(electricity);
+      setElec_main(electricity);
     }
     getProducts();
   }, [response]);
@@ -62,8 +64,7 @@ export default function Page() {
   let filterHandler = useCallback(() => {
     return function filterHandler(name, id) {
       let data = filterArr(electricityData);
-      console.log(data);
-      console.log(filters);
+
       let ids;
 
       switch (name) {
@@ -77,14 +78,16 @@ export default function Page() {
 
         case "Billing Options":
           ids = filterData(data, id, "billing_options");
+
           break;
 
         default:
-          ids = electricityId;
+          ids = elc_main;
+
           break;
       }
 
-      setElectricityId(ids);
+      setElectricityId((prev) => (prev = ids));
     };
   }, [electricityId]);
 
@@ -92,11 +95,7 @@ export default function Page() {
   const memoizedProducts = useMemo(
     () => (
       <>
-        <MainDiv
-          electricityId={electricityId}
-          filters={filters}
-          func={filterHandler}
-        />
+        <MainDiv electricityId={electricityId} filters={filters} />
 
         {electricityId.map(({ id }) => (
           <div key={uuidv4()}>

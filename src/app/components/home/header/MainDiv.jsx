@@ -6,17 +6,20 @@ import BillingFilterBtn from "./BillingFilterBtn";
 import SolorFilterBtn from "./SolorFilterBtn";
 import CostFilterBtn from "./CostFilterBtn";
 import PreferenceFilterBtn from "./PreferenceFilterBtn";
-import { FilterContext } from "@/app/contaxt/context";
+import { FilterContext } from "../../../contaxt/context";
 import { useContext } from "react";
 
 export default function MainDiv({ electricityId, filters }) {
+  const filterHandler = useContext(FilterContext);
+  let funcData = filterHandler();
+
   const prefArr = Object.keys(filters.electricity.your_preference).map(
     (item) => {
       return item;
     }
   );
   return (
-    <div className="heading uppercase flex justify-around items-center p-4 uppercase">
+    <div className="heading uppercase flex justify-around items-center p-4 uppercase ">
       <Header text={` electricity only (${electricityId.length})`} />
 
       <div>
@@ -57,6 +60,13 @@ export default function MainDiv({ electricityId, filters }) {
         ) : (
           ""
         )}
+
+        <button
+          className="mx-2 border p-2 rounded-2xl hover:bg-red-200"
+          onClick={() => funcData()}
+        >
+          Remove Filters
+        </button>
       </div>
     </div>
   );

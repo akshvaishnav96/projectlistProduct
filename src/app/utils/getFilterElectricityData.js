@@ -1,4 +1,4 @@
-export default function (data) {
+function filterArr(data) {
 
 
 
@@ -12,3 +12,5 @@ export default function (data) {
     return newArr
 
 }
+
+export { filterArr }
