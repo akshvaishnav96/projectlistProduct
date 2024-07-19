@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import "./globals.css";
 import { useEffect, useCallback } from "react";
 
@@ -64,9 +64,7 @@ export default function Page() {
   let filterHandler = useCallback(() => {
     return function filterHandler(name, id) {
       let data = filterArr(electricityData);
-
       let ids;
-
       switch (name) {
         case "Providers":
           ids = filterData(data, id, "provider_id");
@@ -78,12 +76,10 @@ export default function Page() {
 
         case "Billing Options":
           ids = filterData(data, id, "billing_options");
-
           break;
 
         default:
           ids = elc_main;
-
           break;
       }
 

@@ -7,8 +7,8 @@ import { getProductsData } from "../utils/generateProducts";
 import Loading from "../components/home/Loading";
 import { Product } from "../components/home/Product";
 import { useRouter } from "next/navigation";
-import ProviderLogo from "../components/home/ProviderLogo";
 
+import Link from "next/link";
 export default function Page({ params }) {
   const router = useRouter(); // Initialize useRouter
   const productId = params.productId;
@@ -51,6 +51,11 @@ export default function Page({ params }) {
 
   return (
     <>
+      <Link href="/">
+        <button className="px-5 py-2 bg-gray-200 m-5 rounded-2xl hover:bg-red-300">
+          ⬅
+        </button>
+      </Link>
       {response ? (
         <>
           {electricityId.map(({ id }) => (

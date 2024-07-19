@@ -19,7 +19,7 @@ export default function MainDiv({ electricityId, filters }) {
     }
   );
   return (
-    <div className="heading uppercase flex justify-around items-center p-4 uppercase ">
+    <div className="heading uppercase flex justify-around items-center p-4 uppercase flex-col">
       <Header text={` electricity only (${electricityId.length})`} />
 
       <div>

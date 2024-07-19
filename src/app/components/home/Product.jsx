@@ -17,7 +17,7 @@ export function Product({ electricityData, providerData }) {
           ) : (
             ""
           )}
-          <div className="main flex-wrap justify-between flex-wrap md:flex">
+          <div className="main flex-wrap justify-between flex-wrap md:flex items-center">
             <ProviderLogo src={providerData.logo} />
             <Elec_PlanName electricityData={electricityData} />
             <ProductBenifits electricityData={electricityData} />
