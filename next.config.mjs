@@ -2,7 +2,7 @@
 const nextConfig = {
 
     images: {
-        domains: ['cimet-uat-content-pub.s3.ap-southeast-2.amazonaws.com'],
+        remotePatterns: [{ hostname: 'cimet-uat-content-pub.s3.ap-southeast-2.amazonaws.com' }],
     },
 }
 

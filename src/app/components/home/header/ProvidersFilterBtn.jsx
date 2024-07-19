@@ -12,6 +12,7 @@ export default function ProvidersFilterBtn({ filters, name }) {
           id={provider.provider_id}
           i={i}
           key={uuidv4()}
+          name={name}
           data={
             <>
               {" "}

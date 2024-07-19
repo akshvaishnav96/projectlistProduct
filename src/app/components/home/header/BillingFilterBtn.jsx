@@ -11,6 +11,8 @@ export default function BillingFilterBtn({ filters, name }) {
           <AnchorTag
             key={uuidv4()}
             i={i}
+            name={name}
+            id={billing_option.billing_option}
             data={
               <>
                 {" "}

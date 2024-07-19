@@ -10,6 +10,8 @@ export default function SolorFilterBtn({ filters, name }) {
       fetchData={filters.electricity.solar_sorting.map((solar_sorting, i) => (
         <AnchorTag
           key={uuidv4()}
+          name={name}
+          id={solar_sorting.value}
           i={i}
           data={
             <>

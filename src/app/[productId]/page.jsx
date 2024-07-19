@@ -7,6 +7,7 @@ import { getProductsData } from "../utils/generateProducts";
 import Loading from "../components/home/Loading";
 import { Product } from "../components/home/Product";
 import { useRouter } from "next/navigation";
+import ProviderLogo from "../components/home/ProviderLogo";
 
 export default function Page({ params }) {
   const router = useRouter(); // Initialize useRouter
@@ -53,11 +54,14 @@ export default function Page({ params }) {
       {response ? (
         <>
           {electricityId.map(({ id }) => (
-            <Product
-              key={uuidv4()}
-              electricityData={electricityData[id]}
-              providerData={providers[electricityData[id]?.provider_id]}
-            />
+            <>
+              <Product
+                key={uuidv4()}
+                electricityData={electricityData[id]}
+                providerData={providers[electricityData[id]?.provider_id]}
+                btnDisplay={false}
+              />
+            </>
           ))}
         </>
       ) : (

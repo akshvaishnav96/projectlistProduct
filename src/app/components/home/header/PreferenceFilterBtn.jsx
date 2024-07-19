@@ -7,19 +7,19 @@ export default function PreferenceFilterBtn({ filters, name, prefArr }) {
     <NavBarDropDownButton
       name={name}
       fetchData={prefArr.map((preference, i) => {
-  
         return (
           <AnchorTag
             key={uuidv4()}
             i={i}
-            name={preference.preference_name}
+            name={name}
+            id={filters.electricity.your_preference[preference].preference_name}
             data={
               <>
                 {" "}
                 <div>
                   {
                     filters.electricity.your_preference[preference]
-                      .preference_value
+                      .preference_name
                   }
                 </div>
                 <div className="text-red-200">

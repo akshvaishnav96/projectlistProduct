@@ -10,6 +10,8 @@ export default function CostFilterBtn({ filters, name }) {
         <AnchorTag
           key={uuidv4()}
           i={i}
+          name={name}
+          id={cost.value}
           data={
             <>
               {" "}

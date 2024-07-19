@@ -12,6 +12,8 @@ export default function contractFilterButton({ filters, name }) {
           <AnchorTag
             key={uuidv4()}
             i={i}
+            name={name}
+            id={contract.contract_length}
             data={
               <>
                 {" "}

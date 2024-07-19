@@ -6,6 +6,8 @@ import BillingFilterBtn from "./BillingFilterBtn";
 import SolorFilterBtn from "./SolorFilterBtn";
 import CostFilterBtn from "./CostFilterBtn";
 import PreferenceFilterBtn from "./PreferenceFilterBtn";
+import { FilterContext } from "@/app/contaxt/context";
+import { useContext } from "react";
 
 export default function MainDiv({ electricityId, filters }) {
   const prefArr = Object.keys(filters.electricity.your_preference).map(

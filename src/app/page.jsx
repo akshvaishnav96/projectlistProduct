@@ -2,13 +2,16 @@
 
 import React, { useMemo, useState } from "react";
 import "./globals.css";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 
 import { getProductsData } from "./utils/generateProducts";
 import { getToken } from "./utils/generateToken";
 import Loading from "./components/home/Loading";
 import { Product } from "./components/home/Product";
 import { v4 as uuidv4 } from "uuid";
+import { FilterContext } from "./contaxt/context";
+import filterArr from "./utils/getFilterElectricityData";
+import { filterData } from "./utils/filterButtonNav/providers";
 
 import MainDiv from "./components/home/header/MainDiv";
 
@@ -56,11 +59,45 @@ export default function Page() {
     getProducts();
   }, [response]);
 
+  let filterHandler = useCallback(() => {
+    return function filterHandler(name, id) {
+      let data = filterArr(electricityData);
+      console.log(data);
+      console.log(filters);
+      let ids;
+
+      switch (name) {
+        case "Providers":
+          ids = filterData(data, id, "provider_id");
+          break;
+
+        case "Contract Length":
+          ids = filterData(data, id, "contract_length");
+          break;
+
+        case "Billing Options":
+          ids = filterData(data, id, "billing_options");
+          break;
+
+        default:
+          ids = electricityId;
+          break;
+      }
+
+      setElectricityId(ids);
+    };
+  }, [electricityId]);
+
   // memorize the returning data
   const memoizedProducts = useMemo(
     () => (
       <>
-        <MainDiv electricityId={electricityId} filters={filters} />
+        <MainDiv
+          electricityId={electricityId}
+          filters={filters}
+          func={filterHandler}
+        />
+
         {electricityId.map(({ id }) => (
           <div key={uuidv4()}>
             <Product
@@ -72,8 +109,14 @@ export default function Page() {
         ))}
       </>
     ),
-    [electricityData, electricityId, providers,filters]
+    [electricityData, electricityId, providers, filters]
   );
 
-  return <>{response ? <>{memoizedProducts}</> : <Loading />}</>;
+  return (
+    <>
+      <FilterContext.Provider value={filterHandler}>
+        {response ? memoizedProducts : <Loading />}
+      </FilterContext.Provider>
+    </>
+  );
 }
