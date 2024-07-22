@@ -34,6 +34,7 @@ export default function Page() {
 
       if (!tokenValue) {
         let token = await getToken();
+        console.log(token);
         setToken(token);
       }
 
