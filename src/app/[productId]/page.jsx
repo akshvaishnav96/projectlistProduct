@@ -59,14 +59,12 @@ export default function Page({ params }) {
       {response ? (
         <>
           {electricityId.map(({ id }) => (
-            <>
-              <Product
-                key={uuidv4()}
-                electricityData={electricityData[id]}
-                providerData={providers[electricityData[id]?.provider_id]}
-                btnDisplay={false}
-              />
-            </>
+            <Product
+              key={uuidv4()}
+              electricityData={electricityData[id]}
+              providerData={providers[electricityData[id]?.provider_id]}
+              btnDisplay={false}
+            />
           ))}
         </>
       ) : (

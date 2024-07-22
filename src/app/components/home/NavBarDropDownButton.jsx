@@ -1,6 +1,6 @@
 export default function NavBarDropDownButton({ name, fetchData }) {
   return (
-    <>
+    
       <div className=" relative inline-block text-left dropdown mx-1">
         <span className="rounded-md shadow-sm">
           <button
@@ -31,6 +31,6 @@ export default function NavBarDropDownButton({ name, fetchData }) {
           </div>
         </div>
       </div>
-    </>
+    
   );
 }

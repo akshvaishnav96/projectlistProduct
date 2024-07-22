@@ -46,9 +46,10 @@ export async function POST(request) {
     cookies().set({
       name: "user-token",
       value: response.data.token,
-      httpOnly: true,
+      // httpOnly: true,
       secure: true,
       sameSite: true,
+      expires: Date.now() + 60 * 60 * 1000,
     });
 
     return Response.json({ response }, { status: 200 });

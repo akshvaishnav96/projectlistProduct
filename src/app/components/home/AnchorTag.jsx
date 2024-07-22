@@ -3,18 +3,16 @@ import { useContext } from "react";
 
 export default function AnchorTagButton({ data, id, name, i }) {
   const filterHandler = useContext(FilterContext);
-  let funcData = filterHandler();
+  const func = filterHandler();
 
   return (
-    <>
-      <button
-        tabIndex={i}
-        className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
-        role="menuitem"
-        onClick={() => funcData(name, id)}
-      >
-        {data}
-      </button>
-    </>
+    <button
+      tabIndex={i}
+      className="text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left"
+      role="menuitem"
+      onClick={() => func(name, id)}
+    >
+      {data}
+    </button>
   );
 }

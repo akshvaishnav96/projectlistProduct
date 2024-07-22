@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FilterContext } from "./contaxt/context";
 import { filterArr } from "./utils/getFilterElectricityData";
 import { filterData } from "./utils/filterButtonNav/providers";
+import { useCookies } from "react-cookie";
 
 import MainDiv from "./components/home/header/MainDiv";
 
@@ -24,11 +25,17 @@ export default function Page() {
   const [elec_ids, setElecIds] = useState([]);
   const [electricityId, setElectricityId] = useState([]);
   const [elc_main, setElec_main] = useState([]);
+  const [cookies] = useCookies(["user-token"]);
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     async function getProducts() {
-      // get token from cookie or genereate new token
-      let token = await getToken();
+      const tokenValue = cookies["user-token"];
+
+      if (!tokenValue) {
+        let token = await getToken();
+        setToken(token);
+      }
 
       // get products data
       let resp = await getProductsData();
@@ -86,7 +93,6 @@ export default function Page() {
       setElectricityId((prev) => (prev = ids));
     };
   }, [electricityId]);
-
   // memorize the returning data
   const memoizedProducts = useMemo(
     () => (
@@ -108,10 +114,8 @@ export default function Page() {
   );
 
   return (
-    <>
-      <FilterContext.Provider value={filterHandler}>
-        {response ? memoizedProducts : <Loading />}
-      </FilterContext.Provider>
-    </>
+    <FilterContext.Provider value={filterHandler}>
+      {response ? memoizedProducts : <Loading />}
+    </FilterContext.Provider>
   );
 }

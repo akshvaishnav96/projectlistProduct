@@ -1,10 +1,13 @@
 function filterArr(data) {
-
-    let newArr = []
+  try {
+    let newArr = [];
     for (let i in data) {
-        newArr.push(data[i])
+      newArr.push(data[i]);
     }
-    return newArr
+    return newArr;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-export { filterArr }
+export { filterArr };

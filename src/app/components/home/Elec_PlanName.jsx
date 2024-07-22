@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import PlanName from "./PlanName";
-import ButtonBlue from "./ButtonBlue";
+import Button from "./Button";
 
 export default function Elec_PlanName({ electricityData }) {
   return (
@@ -9,7 +9,7 @@ export default function Elec_PlanName({ electricityData }) {
       <PlanName planName={electricityData.plan_name} />
 
       <Link href={`/${electricityData.id}`}>
-        <ButtonBlue text={"All details"} />
+        <Button text={"All details"} classData={"bg-blue-500 px-4 py-2"} />
       </Link>
     </div>
   );
